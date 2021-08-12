@@ -25,7 +25,7 @@ export default function DKT({ navigation, route }) {
 		setAnswers(newAnswers);
 	}, []);
 
-	const _renderOptions = (index) => {
+	const _renderOptions = (index, statement) => {
 		return (
 			<RadioForm
 				buttonColor={primary}
@@ -33,7 +33,7 @@ export default function DKT({ navigation, route }) {
 				initial={0}
 				onPress={(value) => {
 					const newAnswers = answers;
-					newAnswers[index] = value;
+					newAnswers[index] = {ques: statement, ans: value };
 					setAnswers(newAnswers);
 				}}
 			/>
@@ -48,7 +48,7 @@ export default function DKT({ navigation, route }) {
 					<Text style={styles.questionStatement}>
 						{questions[index].statement}
 					</Text>
-					{_renderOptions(index)}
+					{_renderOptions(index, questions[index].statement)}
 				</View>
 			);
 		}
